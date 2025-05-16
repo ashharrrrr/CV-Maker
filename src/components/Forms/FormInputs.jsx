@@ -1,7 +1,13 @@
 import MiniForm from "./MiniForm";
 import { PlusIcon } from "lucide-react";
 
-export default function FormInputs({ field, setPersonalInformationInputs }) {
+export default function FormInputs({
+  field,
+  setPersonalInformationInputs,
+  onOptionalInfoChange,
+  optionalInfo,
+  setOptionalInfo,
+}) {
   return (
     <div className={`w-full ${field.isVisible ? "mb-4" : "inline-block"}`}>
       {!field.isVisible && (
@@ -14,8 +20,7 @@ export default function FormInputs({ field, setPersonalInformationInputs }) {
                 item.id === field.id ? { ...item, isVisible: true } : item
               )
             )
-          }
-        >
+          }>
           <PlusIcon />
           <p>{field.label}</p>
         </button>
@@ -27,6 +32,9 @@ export default function FormInputs({ field, setPersonalInformationInputs }) {
             id={field.id}
             label={field.label}
             field={field}
+            onOptionalInfoChange={onOptionalInfoChange}
+            optionalInfo={optionalInfo}
+            setOptionalInfo={setOptionalInfo}
           />
         </div>
       )}

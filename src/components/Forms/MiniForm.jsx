@@ -1,9 +1,10 @@
 
 
-export default function MiniForm({ id, label, setPersonalInformationInputs, field }){
+export default function MiniForm({ id, label, setPersonalInformationInputs, setOptionalInfo, field, onOptionalInfoChange, optionalInfo }){
 
     function onDelete(){
       setPersonalInformationInputs((prev)=> prev.map((item)=>item.id===id ? {...item, isVisible: false}:item));
+      setOptionalInfo({...optionalInfo, [id]:""})
     }
     
     return(
@@ -32,6 +33,8 @@ export default function MiniForm({ id, label, setPersonalInformationInputs, fiel
             type="text"
             id={id}
             className="mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+            onChange={onOptionalInfoChange}
+            data-key={id}
           />
         </div>)
 }

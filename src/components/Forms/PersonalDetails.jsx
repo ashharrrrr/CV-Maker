@@ -1,28 +1,14 @@
 import { useState } from "react";
 import FormInputs from "./FormInputs";
 
-const initialPersonalDetails = {
-  fullName: "",
-  photo: "",
-  jobTitle: "",
-  email: "",
-  phone: "",
-  location: "",
-  personalInformation: {
-    dateOfBirth: "",
-    passportOrId: "",
-    gender: "",
-    maritalStatus: "",
-    nationality: "",
-  },
-  links: {
-    website: "",
-    linkedIn: "",
-    github: "",
-  },
-};
-
-export default function PersonalDetails() {
+export default function PersonalDetails({
+  onChange,
+  onImageChange,
+  setOptionalInfo,
+  personalInfo,
+  optionalInfo,
+  onOptionalInfoChange,
+}) {
   const [personalInformationInputs, setPersonalInformationInputs] = useState([
     {
       id: "dateOfBirth",
@@ -49,9 +35,6 @@ export default function PersonalDetails() {
     },
   ]);
 
-  const [personalDetails, setPersonalDetails] = useState(
-    initialPersonalDetails
-  );
   return (
     <form className="personalDetails bg-white w-2xl h-[70vh] overflow-x-auto no-scrollbar p-8 rounded-2xl shadow-md space-y-8">
       <h1 className="font-bold text-4xl">Edit Personal Details</h1>
@@ -68,6 +51,8 @@ export default function PersonalDetails() {
               id="fullName"
               placeholder="Enter your title, first- and last name"
               className="mt-1 p-2 bg-gray-100 border-0 rounded-lg focus:outline-none "
+              data-key="fullName"
+              onChange={onChange}
               required
             />
           </div>
@@ -82,6 +67,8 @@ export default function PersonalDetails() {
               id="jobTitle"
               placeholder="Enter Job title"
               className="mt-1 p-2 bg-gray-100 rounded-lg focus:outline-none"
+              data-key="jobTitle"
+              onChange={onChange}
             />
           </div>
         </div>
@@ -97,7 +84,7 @@ export default function PersonalDetails() {
   ">
             <div className="w-full h-full rounded-full overflow-hidden border-2 border-gray-200">
               <img
-                src="../../../previewpfp.jpg"
+                src={personalInfo.previewpfp}
                 alt="Profile"
                 className="object-cover w-full h-full"
               />
@@ -131,6 +118,8 @@ export default function PersonalDetails() {
               id="profilePhoto"
               className="sr-only"
               accept="image/png, image/jpeg"
+              onChange={onImageChange}
+              data-key="previewpfp"
             />
           </label>
         </div>
@@ -146,6 +135,8 @@ export default function PersonalDetails() {
               id="emailId"
               placeholder="Enter email"
               className="mt-1 p-2 rounded-lg bg-gray-100 focus:outline-none"
+              data-key="email"
+              onChange={onChange}
             />
           </div>
           <div className="flex flex-col phone">
@@ -157,6 +148,8 @@ export default function PersonalDetails() {
               id="phoneNumber"
               placeholder="Enter Phone"
               className="mt-1 p-2 rounded-lg bg-gray-100 focus:outline-none"
+              data-key="phone"
+              onChange={onChange}
             />
           </div>
         </div>
@@ -169,6 +162,8 @@ export default function PersonalDetails() {
             id="location"
             placeholder="City, Country"
             className="mt-1 p-2 rounded-lg bg-gray-100 focus:outline-none"
+            data-key="location"
+            onChange={onChange}
           />
         </div>
       </div>
@@ -182,11 +177,13 @@ export default function PersonalDetails() {
               key={field.id}
               className={`${
                 field.isVisible ? "w-full" : "inline-block"
-              } transition-all duration-300`}
-            >
+              } transition-all duration-300`}>
               <FormInputs
                 field={field}
                 setPersonalInformationInputs={setPersonalInformationInputs}
+                optionalInfo={optionalInfo}
+                onOptionalInfoChange={onOptionalInfoChange}
+                setOptionalInfo={setOptionalInfo}
               />
             </div>
           ))}
@@ -196,16 +193,18 @@ export default function PersonalDetails() {
         <h3 className="text-2xl font-bold">Links</h3>
         <div className="flex gap-2 flex-wrap">
           {links.map((link) => (
-            <div key={link.id}
+            <div
+              key={link.id}
               className={`${
                 link.isVisible ? "w-full" : "inline-block"
-              } transition-all duration-300`}
-              >
-
-            <FormInputs
-              field={link}
-              setPersonalInformationInputs={setLinks}
-            />
+              } transition-all duration-300`}>
+              <FormInputs
+                field={link}
+                setPersonalInformationInputs={setLinks}
+                onOptionalInfoChange={onOptionalInfoChange}
+                optionalInfo={optionalInfo}
+                setOptionalInfo={setOptionalInfo}
+              />
             </div>
           ))}
         </div>

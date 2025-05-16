@@ -7,6 +7,12 @@ const exampleData = {
     location: "London, UK",
     previewpfp: "previewpfp.jpg"
   },
+  optionalInfo:{
+    dateOfBirth: "",
+    nationality: "",
+    website: "",
+    github: "",
+  },
 
   sections: {
     educations: [
