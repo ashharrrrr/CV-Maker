@@ -1,5 +1,4 @@
 import { useState } from "react";
-import MiniForm from "./MiniForm";
 import FormInputs from "./FormInputs";
 
 const initialPersonalDetails = {
@@ -54,7 +53,7 @@ export default function PersonalDetails() {
     initialPersonalDetails
   );
   return (
-    <form className="personalDetails bg-white w-2xl h-[70vh] p-8 rounded-2xl shadow-md space-y-8">
+    <form className="personalDetails bg-white w-2xl h-[70vh] overflow-x-auto no-scrollbar p-8 rounded-2xl shadow-md space-y-8">
       <h1 className="font-bold text-4xl">Edit Personal Details</h1>
       <div className="nameAndImage flex flex-row justify-between gap-6 ">
         <div className="nameAndJob flex-1 space-y-4">
