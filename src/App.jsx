@@ -12,6 +12,7 @@ function App() {
   const [displayContent, setDisplayContent] = useState("personalDetails");
 
 
+
   function handlePersonalInfoChange(e) {
     const { key } = e.target.dataset;
     setPersonalInfo({ ...personalInfo, [key]: e.target.value });
@@ -30,14 +31,15 @@ function App() {
     });
   }
 
-  function addNewSkill(skills, newSkillsObject){
-    const skillsClone = structuredClone(skills);
-    skillsClone.push(newSkillsObject);
-    setSkills(skillsClone);
-  }
+  // function addNewSkill(skills, newSkillsObject){
+  //   const skillsClone = structuredClone(skills);
+  //   skillsClone.push(newSkillsObject);
+  //   setSkills(skillsClone);
+  // }
 
-  function handleSectionPreview(){
-    
+  function handleSkillsPreview(e){
+    const { key } = e.target.dataset;
+    const form = e.target.closest("form") 
   }
 
   function handleDisplayContentSections() {
@@ -48,9 +50,14 @@ function App() {
     setDisplayContent("personalDetails");
   }
 
-  function handleDisplayContentSkillsForm() {
+  function handleDisplayContentSkillsForm(skills, newSkillsObject) {
     setDisplayContent("skillsForm");
+    const skillsClone = skills.slice();
+    skillsClone.push(newSkillsObject);
+    setSkills(skillsClone);
+    console.log(skills)
   }
+
 
   return (
     <div className="bg-gray-100 min-h-screen gap-10 flex flex-row items-center justify-center">
@@ -75,7 +82,7 @@ function App() {
           handleDisplayContentSkillsForm={handleDisplayContentSkillsForm}
         />
       )}
-      {displayContent === "skillsForm" && <SkillsForm handleDisplayContentSections={handleDisplayContentSections} />}
+      {displayContent === "skillsForm" && <SkillsForm handleDisplayContentSections={handleDisplayContentSections} handleSkillsPreview={handleSkillsPreview} />}
       <Preview personalInfo={personalInfo} optionalInfo={optionalInfo} />
     </div>
   );

@@ -3,7 +3,7 @@ import { useState } from "react";
 import RenderSkills from "./RenderSkills";
 import AddSkills from "./AddSkills";
 
-export default function Skills({ skills,handleDisplayContentSections, handleDisplayContentSkillsForm }) {
+export default function Skills({ skills, handleDisplayContentSections, handleDisplayContentSkillsForm, addNewSkill }) {
   const [expandSkills, setExpandSkills] = useState(false);
 
   function handleExpandSkills() {
@@ -22,13 +22,12 @@ export default function Skills({ skills,handleDisplayContentSections, handleDisp
         </div>
       </button>
       {expandSkills && <div className="flex flex-col space-y-2">
-        {console.log(skills)}
         {skills.map((skill) => (
           <div key={skill.skill}>
           <RenderSkills skill={skill} />
           </div>
         ))} 
-        <AddSkills handleDisplayContentSkillsForm={handleDisplayContentSkillsForm} />
+        <AddSkills skills={skills} addNewSkill={addNewSkill} handleDisplayContentSkillsForm={handleDisplayContentSkillsForm} />
       </div>}
     </div>
   );

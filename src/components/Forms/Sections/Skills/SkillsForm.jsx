@@ -1,4 +1,4 @@
-export default function SkillsForm({ handleDisplayContentSections }) {
+export default function SkillsForm({ handleDisplayContentSections, handleSkillsPreview }) {
   return (
     <div className="flex flex-col space-y-5">
       <form className="bg-white w-2xl h-[30vh] p-8 rounded-2xl shadow-md space-y-8 flex flex-col">
@@ -16,6 +16,7 @@ export default function SkillsForm({ handleDisplayContentSections }) {
             id="skill"
             placeholder="Enter Skill"
             data-key="skill"
+            onChange={handleSkillsPreview}
           />
         </div>
         <div className="flex flex-col">

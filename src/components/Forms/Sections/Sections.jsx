@@ -6,6 +6,7 @@ export default function Sections({
   handleDisplayContentPersonalDetails,
   handleDisplayContentSkillsForm,
   skills,
+  addNewSkill
 }) {
   return (
     <div className="w-2xl h-[100vh] flex flex-col gap-2 justify-center">
@@ -18,6 +19,7 @@ export default function Sections({
         skills={skills}
         handleDisplayContentSkillsForm={handleDisplayContentSkillsForm}
         handleDisplayContentSections={handleDisplayContentSections}
+        addNewSkill={addNewSkill}
       />
     </div>
   );
