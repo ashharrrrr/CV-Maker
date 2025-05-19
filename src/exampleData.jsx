@@ -15,6 +15,18 @@ const exampleData = {
   },
 
   sections: {
+    skills: [
+        {
+            skill: "CAD",
+            subSkill: "Siemens NX, CATIA V5, SolidWorks",
+            isVisible: false
+        },
+        {
+            skill: "Analysis",
+            subSkill: "Thermal Desktop, Abaqus, LS-DYNA, STAR-CCM+",
+            isVisible: false
+        },
+    ],
     educations: [
       {
         degree: "Bachelors in Economics",

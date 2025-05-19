@@ -8,6 +8,7 @@ export default function PersonalDetails({
   personalInfo,
   optionalInfo,
   onOptionalInfoChange,
+  handleDisplayContentSections,
 }) {
   const [personalInformationInputs, setPersonalInformationInputs] = useState([
     {
@@ -36,7 +37,7 @@ export default function PersonalDetails({
   ]);
 
   return (
-    <form className="personalDetails bg-white w-2xl h-[70vh] overflow-x-auto no-scrollbar p-8 rounded-2xl shadow-md space-y-8">
+    <form className="personalDetails bg-white w-2xl h-[70vh] overflow-x-auto no-scrollbar p-8 rounded-2xl shadow-md space-y-8 flex flex-col">
       <h1 className="font-bold text-4xl">Edit Personal Details</h1>
       <div className="nameAndImage flex flex-row justify-between gap-6 ">
         <div className="nameAndJob flex-1 space-y-4">
@@ -209,6 +210,7 @@ export default function PersonalDetails({
           ))}
         </div>
       </section>
+      <button className="relative mt-auto bg-gradient-to-r from-pink-500 to-orange-300 text-white cursor-pointer rounded-full py-3 shadow font-bold text-2xl hover:opacity-80" type="button" onClick={handleDisplayContentSections}>Save</button>
     </form>
   );
 }
