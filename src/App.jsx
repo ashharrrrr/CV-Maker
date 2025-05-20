@@ -4,12 +4,14 @@ import Preview from "./components/Preview/preview.jsx";
 import exampleData from "./exampleData.jsx";
 import Sections from "./components/Forms/Sections/Sections.jsx";
 import SkillsForm from "./components/Forms/Sections/Skills/SkillsForm.jsx";
+import ExperiencesForm from "./components/Forms/Sections/experiences/ExperiencesForm.jsx";
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState(exampleData.personalInfo);
   const [optionalInfo, setOptionalInfo] = useState(exampleData.optionalInfo);
   const [skills, setSkills] = useState(exampleData.sections.skills);
   const [displayContent, setDisplayContent] = useState("personalDetails");
+  const [experiences, setExperiences] = useState(exampleData.sections.experiences);
 
 
 
@@ -21,12 +23,6 @@ function App() {
   function handleOptionalInfoChange(e) {
     const { key } = e.target.dataset;
     setOptionalInfo({ ...optionalInfo, [key]: e.target.value });
-  }
-
-  function handleSkillChange(e){
-    const { key } = e.target.dataset;
-    const newSkill = skills[skills.length-1].skill;
-    setSkills({...skills, [newSkill]: e.target.value})
   }
 
   function handleSkillChange(e) {
@@ -42,6 +38,18 @@ function App() {
     });
   }
 
+  function handleExperienceChange(e) {
+    const { key } = e.target.dataset;
+    setExperiences((prevExperiences) => {
+      if (prevExperiences.length === 0) return prevExperiences; // avoid error if empty
+      const updatedExperiences = [...prevExperiences];
+      updatedExperiences[updatedExperiences.length - 1] = {
+        ...updatedExperiences[updatedExperiences.length - 1],
+        [key]: e.target.value,
+      };
+      return updatedExperiences;
+    });
+  }
   function handleImageChange(e) {
     const { key } = e.target.dataset;
     setPersonalInfo({
@@ -50,18 +58,8 @@ function App() {
     });
   }
 
-  // function addNewSkill(skills, newSkillsObject){
-  //   const skillsClone = structuredClone(skills);
-  //   skillsClone.push(newSkillsObject);
-  //   setSkills(skillsClone);
-  // }
-
-  function handleSkillsPreview(e){
-    const { key } = e.target.dataset;
-    const form = e.target.closest("form") 
-  }
-
-  function handleDisplayContentSections() {
+  function handleDisplayContentSections(e) {
+    e.preventDefault();
     if(skills[skills.length-1].skill){
     setDisplayContent("sections");
     }
@@ -76,9 +74,14 @@ function App() {
     const skillsClone = skills.slice();
     skillsClone.push(newSkillsObject);
     setSkills(skillsClone);
-    console.log(skills)
   }
 
+  function handleDisplayContentExperiencesForm(experiences, newExperiencesObject) {
+    setDisplayContent("experiencesForm");
+    const ExperiencesClone = experiences.slice();
+    ExperiencesClone.push(newExperiencesObject);
+    setExperiences(ExperiencesClone);
+  }
 
   return (
     <div className="bg-gray-100 min-h-screen gap-10 flex flex-row items-center justify-center">
@@ -95,16 +98,19 @@ function App() {
       )}
       {displayContent === "sections" && (
         <Sections
+          experiences={experiences}
           skills={skills}
           handleDisplayContentSections={handleDisplayContentSections}
           handleDisplayContentPersonalDetails={
             handleDisplayContentPersonalDetails
           }
           handleDisplayContentSkillsForm={handleDisplayContentSkillsForm}
+          handleDisplayContentExperiencesForm={handleDisplayContentExperiencesForm}
         />
       )}
-      {displayContent === "skillsForm" && <SkillsForm handleSkillChange={handleSkillChange} handleDisplayContentSections={handleDisplayContentSections} handleSkillsPreview={handleSkillsPreview} />}
-      <Preview skills={skills} personalInfo={personalInfo} optionalInfo={optionalInfo} />
+      {displayContent === "skillsForm" && <SkillsForm handleSkillChange={handleSkillChange} handleDisplayContentSections={handleDisplayContentSections}  />}
+      {displayContent === "experiencesForm" && <ExperiencesForm handleExperienceChange={handleExperienceChange} handleDisplayContentSections={handleDisplayContentSections} />}
+      <Preview skills={skills} personalInfo={personalInfo} optionalInfo={optionalInfo} experiences={experiences} />
     </div>
   );
 }

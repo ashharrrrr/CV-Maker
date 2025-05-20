@@ -1,16 +1,16 @@
-export default function SkillsForm({
-  handleSkillChange,
+export default function ExperiencesForm({
+  handleExperienceChange,
   handleDisplayContentSections,
 }) {
   return (
     <div className="flex flex-col space-y-5">
       <form className="bg-white w-2xl h-[30vh] p-8 rounded-2xl shadow-md space-y-8 flex flex-col">
-        <h1 className="font-bold text-4xl">Create Skills</h1>
+        <h1 className="font-bold text-4xl">Create Experiences</h1>
         <div className="flex flex-col">
           <label
             htmlFor="skill"
             className="text-medium font-bold text-gray-700 p-1">
-            Skill
+                Company Name
             <span className="px-1 font-semibold text-red-400">*</span>
           </label>
           <input
@@ -18,8 +18,8 @@ export default function SkillsForm({
             className="mt-1 p-2 bg-gray-100 border-0 rounded-lg focus:outline-none"
             id="skill"
             placeholder="Enter Skill"
-            data-key="skill"
-            onChange={handleSkillChange}
+            data-key="companyName"
+            onChange={handleExperienceChange}
             required
           />
         </div>
@@ -27,7 +27,7 @@ export default function SkillsForm({
           <label
             className="text-medium font-bold text-gray-700 p-1"
             htmlFor="subSkill">
-            Information / Sub-skills
+                Role
             <span className="px-2 font-semibold text-gray-400">optional</span>
           </label>
           <input
@@ -35,8 +35,8 @@ export default function SkillsForm({
             className="mt-1 p-2 bg-gray-100 border-0 rounded-lg focus:outline-none"
             id="subSkill"
             placeholder="Enter information or sub-skills"
-            data-key="subSkill"
-            onChange={handleSkillChange}
+            data-key="positionTitle"
+            onChange={handleExperienceChange}
           />
         </div>
         <button
