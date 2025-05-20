@@ -23,6 +23,25 @@ function App() {
     setOptionalInfo({ ...optionalInfo, [key]: e.target.value });
   }
 
+  function handleSkillChange(e){
+    const { key } = e.target.dataset;
+    const newSkill = skills[skills.length-1].skill;
+    setSkills({...skills, [newSkill]: e.target.value})
+  }
+
+  function handleSkillChange(e) {
+    const { key } = e.target.dataset;
+    setSkills((prevSkills) => {
+      if (prevSkills.length === 0) return prevSkills; // avoid error if empty
+      const updatedSkills = [...prevSkills];
+      updatedSkills[updatedSkills.length - 1] = {
+        ...updatedSkills[updatedSkills.length - 1],
+        [key]: e.target.value,
+      };
+      return updatedSkills;
+    });
+  }
+
   function handleImageChange(e) {
     const { key } = e.target.dataset;
     setPersonalInfo({
@@ -43,7 +62,9 @@ function App() {
   }
 
   function handleDisplayContentSections() {
+    if(skills[skills.length-1].skill){
     setDisplayContent("sections");
+    }
   }
 
   function handleDisplayContentPersonalDetails() {
@@ -82,8 +103,8 @@ function App() {
           handleDisplayContentSkillsForm={handleDisplayContentSkillsForm}
         />
       )}
-      {displayContent === "skillsForm" && <SkillsForm handleDisplayContentSections={handleDisplayContentSections} handleSkillsPreview={handleSkillsPreview} />}
-      <Preview personalInfo={personalInfo} optionalInfo={optionalInfo} />
+      {displayContent === "skillsForm" && <SkillsForm handleSkillChange={handleSkillChange} handleDisplayContentSections={handleDisplayContentSections} handleSkillsPreview={handleSkillsPreview} />}
+      <Preview skills={skills} personalInfo={personalInfo} optionalInfo={optionalInfo} />
     </div>
   );
 }

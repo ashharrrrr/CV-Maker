@@ -27,7 +27,7 @@ const exampleData = {
             isVisible: false
         },
     ],
-    educations: [
+    education: [
       {
         degree: "Bachelors in Economics",
         schoolName: "London City University",

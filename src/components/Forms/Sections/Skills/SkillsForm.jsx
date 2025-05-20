@@ -1,4 +1,8 @@
-export default function SkillsForm({ handleDisplayContentSections, handleSkillsPreview }) {
+export default function SkillsForm({
+  handleSkillChange,
+  handleDisplayContentSections,
+  handleSkillsPreview,
+}) {
   return (
     <div className="flex flex-col space-y-5">
       <form className="bg-white w-2xl h-[30vh] p-8 rounded-2xl shadow-md space-y-8 flex flex-col">
@@ -16,7 +20,8 @@ export default function SkillsForm({ handleDisplayContentSections, handleSkillsP
             id="skill"
             placeholder="Enter Skill"
             data-key="skill"
-            onChange={handleSkillsPreview}
+            onChange={handleSkillChange}
+            required
           />
         </div>
         <div className="flex flex-col">
@@ -31,13 +36,16 @@ export default function SkillsForm({ handleDisplayContentSections, handleSkillsP
             className="mt-1 p-2 bg-gray-100 border-0 rounded-lg focus:outline-none"
             id="subSkill"
             placeholder="Enter information or sub-skills"
-            data-key="skill"
+            data-key="subSkill"
+            onChange={handleSkillChange}
           />
         </div>
+        <button
+          onClick={handleDisplayContentSections}
+          className="w-full relative mt-auto bg-gradient-to-r from-pink-500 to-orange-300 text-white cursor-pointer rounded-full py-3 shadow font-bold text-2xl hover:opacity-80">
+          Save
+        </button>
       </form>
-      <div className="">
-      <button onClick={handleDisplayContentSections} className="w-full relative mt-auto bg-gradient-to-r from-pink-500 to-orange-300 text-white cursor-pointer rounded-full py-3 shadow font-bold text-2xl hover:opacity-80" type="button">Save</button>
-      </div>
     </div>
   );
 }

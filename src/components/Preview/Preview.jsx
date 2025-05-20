@@ -1,7 +1,8 @@
 import { MailIcon, Phone, LocationEdit, Calendar, FlagIcon, Link, GitGraph } from "lucide-react";
+import PreviewSkills from "./PreviewSkills";
 
 
-export default function Preview({ personalInfo, optionalInfo }) {
+export default function Preview({ personalInfo, optionalInfo, skills }) {
   return (
     <div className="bg-white w-3xl p-15 text-[#303F9F] h-[80vh]">
       <section className="formOne space-y-3 flex flex-row justify-between">
@@ -23,6 +24,9 @@ export default function Preview({ personalInfo, optionalInfo }) {
         <div className="rounded-full overflow-hidden w-32 h-32">
             <img className="" src={personalInfo.previewpfp} alt="preview pfp" />
         </div>
+      </section>
+      <section>
+        {skills.length > 0 && <PreviewSkills skills={skills} />}
       </section>
     </div>
   );
