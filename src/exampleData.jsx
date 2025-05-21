@@ -5,9 +5,9 @@ const exampleData = {
     email: "josephine.meyers@mail.co.uk",
     phone: "+44 3245 5521 5521",
     location: "London, UK",
-    previewpfp: "previewpfp.jpg"
+    previewpfp: "previewpfp.jpg",
   },
-  optionalInfo:{
+  optionalInfo: {
     dateOfBirth: "",
     nationality: "",
     website: "",
@@ -16,16 +16,18 @@ const exampleData = {
 
   sections: {
     skills: [
-        {
-            skill: "CAD",
-            subSkill: "Siemens NX, CATIA V5, SolidWorks",
-            isVisible: true 
-        },
-        {
-            skill: "Analysis",
-            subSkill: "Thermal Desktop, Abaqus, LS-DYNA, STAR-CCM+",
-            isVisible: false
-        },
+      {
+        id: 1,
+        skill: "CAD",
+        subSkill: "Siemens NX, CATIA V5, SolidWorks",
+        isVisible: true,
+      },
+      {
+        id: 2,
+        skill: "Analysis",
+        subSkill: "Thermal Desktop, Abaqus, LS-DYNA, STAR-CCM+",
+        isVisible: false,
+      },
     ],
     education: [
       {
@@ -36,7 +38,6 @@ const exampleData = {
         endDate: "present",
         isCollapsed: true,
         isHidden: false,
-
       },
       {
         degree: "Master's Degree in Math",
@@ -46,7 +47,6 @@ const exampleData = {
         endDate: "present",
         isCollapsed: true,
         isHidden: true,
-
       },
     ],
 
@@ -61,7 +61,6 @@ const exampleData = {
         endDate: "present",
         isCollapsed: true,
         isHidden: false,
-
       },
       {
         companyName: "Black Mesa Labs",
@@ -73,7 +72,6 @@ const exampleData = {
         endDate: "02/2019",
         isCollapsed: true,
         isHidden: false,
-
       },
     ],
   },

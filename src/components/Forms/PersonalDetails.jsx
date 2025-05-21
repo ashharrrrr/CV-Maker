@@ -37,9 +37,9 @@ export default function PersonalDetails({
   ]);
 
   return (
-    <form className="personalDetails bg-white w-2xl h-[70vh] overflow-x-auto no-scrollbar p-8 rounded-2xl shadow-md space-y-8 flex flex-col">
-      <h1 className="font-bold text-4xl">Edit Personal Details</h1>
-      <div className="nameAndImage flex flex-row justify-between gap-6 ">
+    <form className="personalDetails bg-white w-full h-auto rounded-2xl shadow-md space-y-6 p-8 flex flex-col">
+      <h1 className="font-bold text-3xl md:text-4xl">Edit Personal Details</h1>
+      <div className="nameAndImage flex flex-col md:flex-row justify-between gap-4 md:gap-6">
         <div className="nameAndJob flex-1 space-y-4">
           <div className="name flex flex-col">
             <label
@@ -73,14 +73,14 @@ export default function PersonalDetails({
             />
           </div>
         </div>
-        <div className="photo w-32 h-32 relative">
+        <div className="photo w-24 h-24 md:w-32 md:h-32 relative mx-auto md:mx-0">
           <label
             htmlFor="profilePhoto"
             className="
     group
     relative
     inline-block
-    w-32 h-32
+    w-24 h-24 md:w-32 md:h-32
     cursor-pointer
   ">
             <div className="w-full h-full rounded-full overflow-hidden border-2 border-gray-200">
@@ -125,8 +125,8 @@ export default function PersonalDetails({
           </label>
         </div>
       </div>
-      <div className="grid grid-rows-2 gap-6">
-        <div className="grid md:grid-cols-2 gap-6 ">
+      <div className="grid grid-rows-2 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           <div className="flex flex-col">
             <label htmlFor="emailId" className="text-sm p-1 font-bold">
               Email

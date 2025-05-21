@@ -4,8 +4,8 @@ export default function ExperiencesForm({
 }) {
   return (
     <div className="flex flex-col space-y-5">
-      <form className="bg-white w-2xl h-[70vh] p-8 rounded-2xl shadow-md space-y-8 flex flex-col">
-        <h1 className="font-bold text-4xl">Create Experiences</h1>
+      <form className="bg-white w-full h-auto rounded-2xl shadow-md space-y-6 p-8 flex flex-col">
+        <h1 className="font-bold text-3xl md:text-4xl">Create Experiences</h1>
         <div className="flex flex-col">
           <label
             htmlFor="jobProfile"
@@ -55,7 +55,7 @@ export default function ExperiencesForm({
             onChange={handleExperienceChange}
           />
         </div>
-        <div className="flex justify-between">
+        <div className="flex flex-col md:flex-row justify-between gap-4 md:gap-6">
           <div className="flex flex-col">
             <label
               className="text-medium font-bold text-gray-700 p-1"

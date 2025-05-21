@@ -1,19 +1,21 @@
-import { useState } from "react";
 import PersonalDetails from "./components/forms/PersonalDetails.jsx";
 import Preview from "./components/Preview/preview.jsx";
 import exampleData from "./exampleData.jsx";
 import Sections from "./components/Forms/Sections/Sections.jsx";
 import SkillsForm from "./components/Forms/Sections/Skills/SkillsForm.jsx";
 import ExperiencesForm from "./components/Forms/Sections/experiences/ExperiencesForm.jsx";
+import { useState } from "react";
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState(exampleData.personalInfo);
   const [optionalInfo, setOptionalInfo] = useState(exampleData.optionalInfo);
   const [skills, setSkills] = useState(exampleData.sections.skills);
   const [displayContent, setDisplayContent] = useState("personalDetails");
-  const [experiences, setExperiences] = useState(exampleData.sections.experiences);
-
-
+  const [experiences, setExperiences] = useState(
+    exampleData.sections.experiences
+  );
+  const [currentSkill, setCurrentSkill] = useState("");
+  const [currentSubSkill, setCurrentSubSkill] = useState("");
 
   function handlePersonalInfoChange(e) {
     const { key } = e.target.dataset;
@@ -60,8 +62,11 @@ function App() {
 
   function handleDisplayContentSections(e) {
     e.preventDefault();
-    if(skills[skills.length-1].skill && experiences[experiences.length-1].companyName){
-    setDisplayContent("sections");
+    if (
+      skills[skills.length - 1].skill &&
+      experiences[experiences.length - 1].companyName
+    ) {
+      setDisplayContent("sections");
     }
   }
 
@@ -76,7 +81,10 @@ function App() {
     setSkills(skillsClone);
   }
 
-  function handleDisplayContentExperiencesForm(experiences, newExperiencesObject) {
+  function handleDisplayContentExperiencesForm(
+    experiences,
+    newExperiencesObject
+  ) {
     setDisplayContent("experiencesForm");
     const ExperiencesClone = experiences.slice();
     ExperiencesClone.push(newExperiencesObject);
@@ -84,33 +92,68 @@ function App() {
   }
 
   return (
-    <div className="bg-gray-100 min-h-screen gap-10 flex flex-row items-center justify-center">
-      {displayContent === "personalDetails" && (
-        <PersonalDetails
-          handleDisplayContentSections={handleDisplayContentSections}
-          onChange={handlePersonalInfoChange}
-          onOptionalInfoChange={handleOptionalInfoChange}
-          onImageChange={handleImageChange}
+    <div className="bg-gray-100 min-h-screen p-4 md:p-10 flex items-start justify-center gap-8">
+      <div className="w-[600px] overflow-y-auto">
+        {displayContent === "personalDetails" && (
+          <PersonalDetails
+            handleDisplayContentSections={handleDisplayContentSections}
+            onChange={handlePersonalInfoChange}
+            onOptionalInfoChange={handleOptionalInfoChange}
+            onImageChange={handleImageChange}
+            personalInfo={personalInfo}
+            optionalInfo={optionalInfo}
+            setOptionalInfo={setOptionalInfo}
+          />
+        )}
+        {displayContent === "sections" && (
+          <Sections
+            experiences={experiences}
+            skills={skills}
+            setSkills={setSkills}
+            currentSkill={currentSkill}
+            currentSubSkill={currentSubSkill}
+            setCurrentSkill={setCurrentSkill}
+            setCurrentSubSkill={setCurrentSubSkill}
+            displayContent={displayContent}
+            setDisplayContent={setDisplayContent}
+            handleDisplayContentSections={handleDisplayContentSections}
+            handleDisplayContentPersonalDetails={
+              handleDisplayContentPersonalDetails
+            }
+            handleDisplayContentSkillsForm={handleDisplayContentSkillsForm}
+            handleDisplayContentExperiencesForm={
+              handleDisplayContentExperiencesForm
+            }
+            personalInfo={personalInfo}
+          />
+        )}
+        {displayContent === "skillsForm" && (
+          <SkillsForm
+            skills={skills}
+            setSkills={setSkills}
+            currentSkill={currentSkill}
+            currentSubSkill={currentSubSkill}
+            setCurrentSkill={setCurrentSkill}
+            setCurrentSubSkill={setCurrentSubSkill}
+            handleSkillChange={handleSkillChange}
+            handleDisplayContentSections={handleDisplayContentSections}
+          />
+        )}
+        {displayContent === "experiencesForm" && (
+          <ExperiencesForm
+            handleExperienceChange={handleExperienceChange}
+            handleDisplayContentSections={handleDisplayContentSections}
+          />
+        )}
+      </div>
+      <div className="sticky top-10">
+        <Preview
+          skills={skills}
           personalInfo={personalInfo}
           optionalInfo={optionalInfo}
-          setOptionalInfo={setOptionalInfo}
-        />
-      )}
-      {displayContent === "sections" && (
-        <Sections
           experiences={experiences}
-          skills={skills}
-          handleDisplayContentSections={handleDisplayContentSections}
-          handleDisplayContentPersonalDetails={
-            handleDisplayContentPersonalDetails
-          }
-          handleDisplayContentSkillsForm={handleDisplayContentSkillsForm}
-          handleDisplayContentExperiencesForm={handleDisplayContentExperiencesForm}
         />
-      )}
-      {displayContent === "skillsForm" && <SkillsForm handleSkillChange={handleSkillChange} handleDisplayContentSections={handleDisplayContentSections}  />}
-      {displayContent === "experiencesForm" && <ExperiencesForm handleExperienceChange={handleExperienceChange} handleDisplayContentSections={handleDisplayContentSections} />}
-      <Preview skills={skills} personalInfo={personalInfo} optionalInfo={optionalInfo} experiences={experiences} />
+      </div>
     </div>
   );
 }

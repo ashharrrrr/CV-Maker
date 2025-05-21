@@ -1,10 +1,7 @@
 import { Plus } from "lucide-react";
 
-export default function AddSkills({
-  skills,
-  handleDisplayContentSkillsForm,
-}) {
-  const newSkillsObject = { skill: "", subSkill: "", isVisible: false };
+export default function AddSkills({ skills, handleDisplayContentSkillsForm }) {
+  const newSkillsObject = { id: 3, skill: "", subSkill: "", isVisible: true };
   return (
     <div
       key={"AddSkills"}

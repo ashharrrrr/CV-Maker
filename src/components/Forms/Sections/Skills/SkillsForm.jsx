@@ -1,11 +1,16 @@
+import { useState } from "react";
+
 export default function SkillsForm({
+  skills,
+  setSkills,
   handleSkillChange,
   handleDisplayContentSections,
 }) {
+
   return (
     <div className="flex flex-col space-y-5">
-      <form className="bg-white w-2xl h-[30vh] p-8 rounded-2xl shadow-md space-y-8 flex flex-col">
-        <h1 className="font-bold text-4xl">Create Skills</h1>
+      <form className="bg-white w-full h-auto rounded-2xl shadow-md space-y-6 p-8 flex flex-col">
+        <h1 className="font-bold text-3xl md:text-4xl">Create Skills</h1>
         <div className="flex flex-col">
           <label
             htmlFor="skill"
@@ -19,7 +24,9 @@ export default function SkillsForm({
             id="skill"
             placeholder="Enter Skill"
             data-key="skill"
-            onChange={handleSkillChange}
+            onChange={(e) => {
+              handleSkillChange(e)
+            }}
             required
           />
         </div>
@@ -29,14 +36,15 @@ export default function SkillsForm({
             htmlFor="subSkill">
             Information / Sub-skills
             <span className="px-2 font-semibold text-gray-400">optional</span>
-          </label>
-          <input
+          </label> <input
             type="text"
             className="mt-1 p-2 bg-gray-100 border-0 rounded-lg focus:outline-none"
             id="subSkill"
             placeholder="Enter information or sub-skills"
             data-key="subSkill"
-            onChange={handleSkillChange}
+            onChange={(e) => {
+              handleSkillChange(e)
+            }}
           />
         </div>
         <button
