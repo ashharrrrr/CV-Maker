@@ -60,7 +60,7 @@ function App() {
 
   function handleDisplayContentSections(e) {
     e.preventDefault();
-    if(skills[skills.length-1].skill){
+    if(skills[skills.length-1].skill && experiences[experiences.length-1].companyName){
     setDisplayContent("sections");
     }
   }

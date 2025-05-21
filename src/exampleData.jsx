@@ -19,7 +19,7 @@ const exampleData = {
         {
             skill: "CAD",
             subSkill: "Siemens NX, CATIA V5, SolidWorks",
-            isVisible: false
+            isVisible: true 
         },
         {
             skill: "Analysis",

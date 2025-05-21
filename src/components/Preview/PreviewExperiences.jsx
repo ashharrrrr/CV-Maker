@@ -4,9 +4,24 @@ export default function PreviewExperiences({ experiences }){
             <h1 className="text-center text-xl font-bold bg-[#F0F1F8] w-full">Experiences</h1>
             <div className="text-black p-2 flex flex-wrap gap-5">
                 {experiences.map((experience)=> (
-                    <div className="w-[45%]" key={experience.companyName}>
-                        <h1 className="font-bold">{experience.companyName}</h1>
-                        <p className="text-start">{experience.positionTitle}</p>
+                    <div className="flex flex-col gap-1 w-full" key={experience.companyName}>
+                        <div className="flex justify-between">
+                            <div className="flex flex-col">
+                                <h1 className="font-bold">{experience.positionTitle}</h1>
+                                <p className="italic">{experience.companyName}</p>
+                            </div>
+                            <div>
+                                <div className="flex gap-1">
+                                    <span>{experience.startDate}</span>
+                                    <span>-</span>
+                                    <span>{experience.endDate}</span>
+                                </div>
+                                <p>{experience.location}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <span>{experience.description}</span>
+                        </div>
                     </div>
                 ))}
             </div>

@@ -3,7 +3,6 @@ import { Plus } from "lucide-react";
 export default function AddSkills({
   skills,
   handleDisplayContentSkillsForm,
-  addNewSkill,
 }) {
   const newSkillsObject = { skill: "", subSkill: "", isVisible: false };
   return (
