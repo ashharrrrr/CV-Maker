@@ -1,12 +1,49 @@
-# React + Vite
+# [Live Demo](https://unflowcv.vercel.app/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![CV Maker Preview](public/screenshots/preview.png)
 
-Currently, two official plugins are available:
+# CV Maker (React)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+CV Maker is a modern, interactive web application for building and previewing professional CVs/resumes. Built with React and Vite, it provides a live preview, easy editing, and export options for your CV.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Live Preview**: Instantly see your CV as you edit personal details, skills, experiences, and education.
+- **Section Editing**: Add, edit, and remove skills, experiences, and education entries with intuitive forms.
+- **Visibility Controls**: Show or hide individual skills, experiences, or education items in the preview.
+- **Profile Image Upload**: Upload and preview your profile photo.
+- **Responsive Design**: Optimized for both desktop and mobile devices.
+- **Download as PDF**: Export your CV as a pixel-perfect PDF using html2canvas-pro and jsPDF.
+- **Modal Preview**: View your CV in a modal with a dedicated download button.
+- **Consistent Styling**: Uses Tailwind CSS for a clean, modern look.
+
+## Technologies Used
+
+- ![React](https://raw.githubusercontent.com/github/explore/main/topics/react/react.png) **React** (UI library)
+- ![Vite](https://raw.githubusercontent.com/github/explore/main/topics/vite/vite.png) **Vite** (build tool)
+- ![Tailwind CSS](https://raw.githubusercontent.com/github/explore/main/topics/tailwindcss/tailwindcss.png) **Tailwind CSS** (utility-first CSS framework)
+- ![Lucide](https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/lucide.svg) **Lucide React** (icon library)
+- **html2canvas-pro** (DOM to image for PDF export)
+- **jsPDF** (PDF generation)
+
+## Getting Started
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Start the development server:
+   ```bash
+   npm run dev
+   ```
+3. Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+## Project Structure
+
+- `src/components/` - All React components (forms, preview, modal, etc.)
+- `src/exampleData.jsx` - Example data for initial state
+- `src/App.jsx` - Main application logic
+
+## License
+
+This project is for educational and personal portfolio use.
