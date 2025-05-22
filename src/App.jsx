@@ -81,10 +81,9 @@ function App() {
   }
 
   function handleDisplayContentSkillsForm(skills, newSkillsObject) {
+    setCurrentEditingSkill(null); // Reset editing state first
     setDisplayContent("skillsForm");
-    const skillsClone = skills.slice();
-    skillsClone.push(newSkillsObject);
-    setSkills(skillsClone);
+    setSkills(prevSkills => [...prevSkills, newSkillsObject]);
   }
 
   function handleDisplayContentExperiencesForm(
@@ -145,6 +144,7 @@ function App() {
             handleSkillChange={handleSkillChange}
             handleDisplayContentSections={handleDisplayContentSections}
             currentEditingSkill={currentEditingSkill}
+            setDisplayContent={setDisplayContent}
           />
         )}
         {displayContent === "experiencesForm" && (

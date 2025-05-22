@@ -39,7 +39,7 @@ export default function Skills({
       {expandSkills && (
         <div className="flex flex-col space-y-2">
           {skills.map((skill) => (
-            <div key={skill.skill}>
+            <div key={skill.id}>
               <RenderSkills
                 currentSkill={currentSkill}
                 currentSubSkill={currentSubSkill}

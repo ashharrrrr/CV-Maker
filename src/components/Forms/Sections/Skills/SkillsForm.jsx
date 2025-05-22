@@ -4,47 +4,67 @@ export default function SkillsForm({
   skills,
   setSkills,
   handleSkillChange,
-  handleDisplayContentSections,
-  currentEditingSkill
+  currentEditingSkill,
+  setDisplayContent
 }) {
   const [formData, setFormData] = useState({
     skill: "",
-    subSkill: ""
+    subSkill: "",
+    isVisible: true
   });
 
   useEffect(() => {
     if (currentEditingSkill) {
       setFormData({
         skill: currentEditingSkill.skill,
-        subSkill: currentEditingSkill.subSkill
+        subSkill: currentEditingSkill.subSkill,
+        isVisible: currentEditingSkill.isVisible
+      });
+    } else {
+      // Reset form when not editing
+      setFormData({
+        skill: "",
+        subSkill: "",
+        isVisible: true
       });
     }
   }, [currentEditingSkill]);
 
-  const handleChange = (e) => {
-    const { key } = e.target.dataset;
-    setFormData(prev => ({ ...prev, [key]: e.target.value }));
-  };
+  // Effect to update skills when formData changes
+  useEffect(() => {
+    if (!formData.skill && !formData.subSkill) return; // Don't update if form is empty
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
     if (currentEditingSkill) {
-      // Edit existing skill
       setSkills(prevSkills => prevSkills.map(skill =>
         skill.id === currentEditingSkill.id
           ? { ...skill, ...formData }
           : skill
       ));
     } else {
-      // Add new skill
-      const newSkill = {
-        id: Date.now(),
-        ...formData,
-        isVisible: true
-      };
-      setSkills(prev => [...prev, newSkill]);
+      // Update the last skill in the list
+      setSkills(prevSkills => {
+        const lastSkill = prevSkills[prevSkills.length - 1];
+        if (!lastSkill) return prevSkills;
+
+        return prevSkills.map((skill, index) =>
+          index === prevSkills.length - 1 ? { ...skill, ...formData } : skill
+        );
+      });
     }
-    handleDisplayContentSections(e);
+  }, [formData, currentEditingSkill, setSkills]);
+
+  const handleChange = (e) => {
+    const { key } = e.target.dataset;
+    const newValue = e.target.value;
+    setFormData(prev => ({ ...prev, [key]: newValue }));
+  };
+
+  const handleReturn = (e) => {
+    e.preventDefault();
+    // Only return to sections if we have some content
+    if (formData.skill || formData.subSkill) {
+      setDisplayContent("sections");
+    }
   };
 
   return (
@@ -89,9 +109,9 @@ export default function SkillsForm({
           />
         </div>
         <button
-          onClick={handleSubmit}
+          onClick={handleReturn}
           className="w-full relative mt-auto bg-gradient-to-r from-pink-500 to-orange-300 text-white cursor-pointer rounded-full py-3 shadow font-bold text-2xl hover:opacity-80">
-          {currentEditingSkill ? "Update" : "Save"}
+          Done
         </button>
       </form>
     </div>

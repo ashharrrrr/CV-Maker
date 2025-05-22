@@ -8,12 +8,14 @@ export default function RenderSkills({
   handleSkillEdit
 }) {
   function toggleIsVisible() {
-    skill.isVisible = !skill.isVisible;
+    setSkills(prevSkills => prevSkills.map(s =>
+      s.id === skill.id ? { ...s, isVisible: !s.isVisible } : s
+    ));
   }
 
   return (
     <button
-      className="flex w-full bg-white cursor-pointer  p-6 flex-row justify-between items-center"
+      className="flex w-full bg-white cursor-pointer p-6 flex-row justify-between items-center"
       onClick={() => {
         handleSkillEdit(skill);
         setDisplayContent("skillsForm");
@@ -26,8 +28,8 @@ export default function RenderSkills({
         e.stopPropagation();
         toggleIsVisible();
       }} className="hover:opacity-60">
-        <EyeIcon size={24} />
+        {skill.isVisible ? <EyeIcon size={24} /> : <EyeOffIcon size={24} />}
       </div>
-    </button >
+    </button>
   );
 }
