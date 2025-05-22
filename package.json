@@ -10,10 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-pdf/renderer": "^4.3.0",
     "@tailwindcss/vite": "^4.1.4",
     "lucide-react": "^0.506.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-to-pdf": "^2.0.0",
     "tailwindcss": "^4.1.4"
   },
   "devDependencies": {

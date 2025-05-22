@@ -4,17 +4,18 @@ import PreviewExperiences from "./PreviewExperiences";
 import PreviewEducations from "./PreviewEducations";
 import PreviewModal from "./PreviewModal";
 import { useState } from "react";
+import { usePDF } from 'react-to-pdf';
 
 export default function Preview({ personalInfo, optionalInfo, skills, experiences, educations }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const PreviewContent = () => (
-    <div className="h-full">
+    <div className="h-full" >
       <section className="formOne space-y-3 flex flex-col md:flex-row justify-between">
         <div className="flex flex-col gap-y-2 w-full md:w-2/3">
-          <div className="flex flex-row items-baseline gap-x-3">
-            <h1 className="font-bold text-3xl">{personalInfo.fullName}</h1>
-            <span className="italic text-2xl text-gray-600">{personalInfo.jobTitle}</span>
+          <div className="flex flex-row items-baseline gap-x-2">
+            <h1 className="font-bold text-2xl">{personalInfo.fullName}</h1>
+            <span className="italic text-lg text-gray-600">{personalInfo.jobTitle}</span>
           </div>
           <div className="grid grid-cols-1 gap-1">
             <p className="flex flex-row gap-2 items-center"><MailIcon size={18} />{personalInfo.email}</p>
