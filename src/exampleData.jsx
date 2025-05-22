@@ -29,7 +29,7 @@ const exampleData = {
         isVisible: false,
       },
     ],
-    education: [
+    educations: [
       {
         degree: "Bachelors in Economics",
         schoolName: "London City University",

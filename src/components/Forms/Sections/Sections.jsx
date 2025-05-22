@@ -1,6 +1,7 @@
 import CollapsedPersonalDetails from "./CollapsedPersonalDetails";
 import Skills from "./Skills/Skills";
 import Experiences from "./experiences/Experiences";
+import Educations from "./educations/Educations";
 
 export default function Sections({
   currentSkill,
@@ -13,9 +14,13 @@ export default function Sections({
   handleDisplayContentPersonalDetails,
   handleDisplayContentSkillsForm,
   handleDisplayContentExperiencesForm,
+  handleDisplayContentEducationsForm,
   skills,
   setSkills,
   experiences,
+  setExperiences,
+  educations,
+  setEducations,
   personalInfo,
   handleSkillEdit,
 }) {
@@ -42,9 +47,18 @@ export default function Sections({
       />
       <Experiences
         experiences={experiences}
+        setExperiences={setExperiences}
         handleDisplayContentSections={handleDisplayContentSections}
         handleDisplayContentExperiencesForm={
           handleDisplayContentExperiencesForm
+        }
+      />
+      <Educations
+        educations={educations}
+        setEducations={setEducations}
+        handleDisplayContentSections={handleDisplayContentSections}
+        handleDisplayContentEducationsForm={
+          handleDisplayContentEducationsForm
         }
       />
     </div>

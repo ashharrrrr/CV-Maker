@@ -1,9 +1,9 @@
-export default function PreviewExperiences({ experiences }){
-    return(
+export default function PreviewExperiences({ experiences }) {
+    return (
         <div className="flex flex-col gap-3 w-full">
             <h1 className="text-center text-xl font-bold bg-[#F0F1F8] w-full">Experiences</h1>
             <div className="text-black p-2 flex flex-wrap gap-5">
-                {experiences.map((experience)=> (
+                {experiences.filter(experience => !experience.isHidden).map((experience) => (
                     <div className="flex flex-col gap-1 w-full" key={experience.companyName}>
                         <div className="flex justify-between">
                             <div className="flex flex-col">

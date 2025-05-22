@@ -4,6 +4,7 @@ import exampleData from "./exampleData.jsx";
 import Sections from "./components/Forms/Sections/Sections.jsx";
 import SkillsForm from "./components/Forms/Sections/Skills/SkillsForm.jsx";
 import ExperiencesForm from "./components/Forms/Sections/experiences/ExperiencesForm.jsx";
+import EducationsForm from "./components/Forms/Sections/educations/EducationsForm.jsx";
 import { useState } from "react";
 
 function App() {
@@ -13,6 +14,9 @@ function App() {
   const [displayContent, setDisplayContent] = useState("personalDetails");
   const [experiences, setExperiences] = useState(
     exampleData.sections.experiences
+  );
+  const [educations, setEducations] = useState(
+    exampleData.sections.educations || []
   );
   const [currentSkill, setCurrentSkill] = useState("");
   const [currentSubSkill, setCurrentSubSkill] = useState("");
@@ -53,6 +57,20 @@ function App() {
       return updatedExperiences;
     });
   }
+
+  function handleEducationChange(e) {
+    const { key } = e.target.dataset;
+    setEducations((prevEducations) => {
+      if (prevEducations.length === 0) return prevEducations;
+      const updatedEducations = [...prevEducations];
+      updatedEducations[updatedEducations.length - 1] = {
+        ...updatedEducations[updatedEducations.length - 1],
+        [key]: e.target.value,
+      };
+      return updatedEducations;
+    });
+  }
+
   function handleImageChange(e) {
     const { key } = e.target.dataset;
     setPersonalInfo({
@@ -96,6 +114,16 @@ function App() {
     setExperiences(ExperiencesClone);
   }
 
+  function handleDisplayContentEducationsForm(
+    educations,
+    newEducationObject
+  ) {
+    setDisplayContent("educationsForm");
+    const educationsClone = educations.slice();
+    educationsClone.push(newEducationObject);
+    setEducations(educationsClone);
+  }
+
   return (
     <div className="bg-gray-100 min-h-screen p-4 md:p-10 flex items-start justify-center gap-8">
       <div className="w-[600px] overflow-y-auto">
@@ -113,6 +141,9 @@ function App() {
         {displayContent === "sections" && (
           <Sections
             experiences={experiences}
+            setExperiences={setExperiences}
+            educations={educations}
+            setEducations={setEducations}
             skills={skills}
             setSkills={setSkills}
             currentSkill={currentSkill}
@@ -128,6 +159,9 @@ function App() {
             handleDisplayContentSkillsForm={handleDisplayContentSkillsForm}
             handleDisplayContentExperiencesForm={
               handleDisplayContentExperiencesForm
+            }
+            handleDisplayContentEducationsForm={
+              handleDisplayContentEducationsForm
             }
             handleSkillEdit={handleSkillEdit}
             personalInfo={personalInfo}
@@ -153,6 +187,12 @@ function App() {
             handleDisplayContentSections={handleDisplayContentSections}
           />
         )}
+        {displayContent === "educationsForm" && (
+          <EducationsForm
+            handleEducationChange={handleEducationChange}
+            handleDisplayContentSections={handleDisplayContentSections}
+          />
+        )}
       </div>
       <div className="sticky top-10">
         <Preview
@@ -160,6 +200,7 @@ function App() {
           personalInfo={personalInfo}
           optionalInfo={optionalInfo}
           experiences={experiences}
+          educations={educations}
         />
       </div>
     </div>

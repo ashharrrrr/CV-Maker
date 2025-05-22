@@ -3,7 +3,7 @@ import { useState } from "react";
 import RenderExperiences from "./RenderExperiences";
 import AddExperiences from "./AddExperiences";
 
-export default function Experiences({ experiences, handleDisplayContentSections, handleDisplayContentExperiencesForm, addNewExperience }) {
+export default function Experiences({ experiences, setExperiences, handleDisplayContentSections, handleDisplayContentExperiencesForm, addNewExperience }) {
   const [expandExperiences, setExpandExperiences] = useState(false);
 
   function handleExpandExperiences() {
@@ -24,7 +24,7 @@ export default function Experiences({ experiences, handleDisplayContentSections,
       {expandExperiences && <div className="flex flex-col space-y-2">
         {experiences.map((experience) => (
           <div key={experience.companyName}>
-          <RenderExperiences experience={experience} />
+            <RenderExperiences experience={experience} setExperiences={setExperiences} />
           </div>
         ))} 
         <AddExperiences experiences={experiences} addNewExperience={addNewExperience} handleDisplayContentExperiencesForm={handleDisplayContentExperiencesForm} />
