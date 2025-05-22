@@ -3,7 +3,7 @@ import { useState } from "react";
 import RenderEducations from "./RenderEducations";
 import AddEducations from "./AddEducations";
 
-export default function Educations({ educations, setEducations, handleDisplayContentSections, handleDisplayContentEducationsForm, addNewEducation }) {
+export default function Educations({ educations, setEducations, handleDisplayContentSections, handleDisplayContentEducationsForm, handleEducationEdit, setDisplayContent }) {
   const [expandEducations, setExpandEducations] = useState(false);
 
   function handleExpandEducations() {
@@ -24,10 +24,15 @@ export default function Educations({ educations, setEducations, handleDisplayCon
       {expandEducations && <div className="flex flex-col space-y-2">
         {educations.map((education) => (
           <div key={education.degree}>
-            <RenderEducations education={education} setEducations={setEducations} />
+            <RenderEducations 
+              education={education} 
+              setEducations={setEducations}
+              handleEducationEdit={handleEducationEdit}
+              setDisplayContent={setDisplayContent}
+            />
           </div>
         ))} 
-        <AddEducations educations={educations} addNewEducation={addNewEducation} handleDisplayContentEducationsForm={handleDisplayContentEducationsForm} />
+        <AddEducations educations={educations} handleDisplayContentEducationsForm={handleDisplayContentEducationsForm} />
       </div>}
     </div>
   );

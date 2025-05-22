@@ -23,6 +23,8 @@ export default function Sections({
   setEducations,
   personalInfo,
   handleSkillEdit,
+  handleExperienceEdit,
+  handleEducationEdit,
 }) {
   return (
     <div className="w-full flex flex-col gap-2">
@@ -52,6 +54,8 @@ export default function Sections({
         handleDisplayContentExperiencesForm={
           handleDisplayContentExperiencesForm
         }
+        handleExperienceEdit={handleExperienceEdit}
+        setDisplayContent={setDisplayContent}
       />
       <Educations
         educations={educations}
@@ -60,6 +64,8 @@ export default function Sections({
         handleDisplayContentEducationsForm={
           handleDisplayContentEducationsForm
         }
+        handleEducationEdit={handleEducationEdit}
+        setDisplayContent={setDisplayContent}
       />
     </div>
   );

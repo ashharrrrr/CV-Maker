@@ -21,6 +21,8 @@ function App() {
   const [currentSkill, setCurrentSkill] = useState("");
   const [currentSubSkill, setCurrentSubSkill] = useState("");
   const [currentEditingSkill, setCurrentEditingSkill] = useState(null);
+  const [currentEditingExperience, setCurrentEditingExperience] = useState(null);
+  const [currentEditingEducation, setCurrentEditingEducation] = useState(null);
 
   function handlePersonalInfoChange(e) {
     const { key } = e.target.dataset;
@@ -83,9 +85,19 @@ function App() {
     setCurrentEditingSkill(skill);
   }
 
+  function handleExperienceEdit(experience) {
+    setCurrentEditingExperience(experience);
+  }
+
+  function handleEducationEdit(education) {
+    setCurrentEditingEducation(education);
+  }
+
   function handleDisplayContentSections(e) {
     e.preventDefault();
-    setCurrentEditingSkill(null); // Reset editing state
+    setCurrentEditingSkill(null);
+    setCurrentEditingExperience(null);
+    setCurrentEditingEducation(null);
     if (
       skills[skills.length - 1].skill &&
       experiences[experiences.length - 1].companyName
@@ -126,7 +138,7 @@ function App() {
 
   return (
     <div className="bg-gray-100 min-h-screen p-4 md:p-10 flex items-start justify-center gap-8">
-      <div className="w-[600px] overflow-y-auto">
+      <div className="w-[500px] overflow-y-auto">
         {displayContent === "personalDetails" && (
           <PersonalDetails
             handleDisplayContentSections={handleDisplayContentSections}
@@ -164,6 +176,8 @@ function App() {
               handleDisplayContentEducationsForm
             }
             handleSkillEdit={handleSkillEdit}
+            handleExperienceEdit={handleExperienceEdit}
+            handleEducationEdit={handleEducationEdit}
             personalInfo={personalInfo}
           />
         )}
@@ -185,16 +199,20 @@ function App() {
           <ExperiencesForm
             handleExperienceChange={handleExperienceChange}
             handleDisplayContentSections={handleDisplayContentSections}
+            currentEditingExperience={currentEditingExperience}
+            setExperiences={setExperiences}
           />
         )}
         {displayContent === "educationsForm" && (
           <EducationsForm
             handleEducationChange={handleEducationChange}
             handleDisplayContentSections={handleDisplayContentSections}
+            currentEditingEducation={currentEditingEducation}
+            setEducations={setEducations}
           />
         )}
       </div>
-      <div className="sticky top-10">
+      <div className="sticky top-10 h-[90vh]" style={{ width: 'calc(90vh / 1.4142)' }}>
         <Preview
           skills={skills}
           personalInfo={personalInfo}

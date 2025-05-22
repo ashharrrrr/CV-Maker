@@ -29,27 +29,6 @@ const exampleData = {
         isVisible: false,
       },
     ],
-    educations: [
-      {
-        degree: "Bachelors in Economics",
-        schoolName: "London City University",
-        location: "New York City, US",
-        startDate: "08/2020",
-        endDate: "present",
-        isCollapsed: true,
-        isHidden: false,
-      },
-      {
-        degree: "Master's Degree in Math",
-        schoolName: "Hidden University",
-        location: "New York City, US",
-        startDate: "08/2020",
-        endDate: "present",
-        isCollapsed: true,
-        isHidden: true,
-      },
-    ],
-
     experiences: [
       {
         companyName: "Umbrella Inc.",
@@ -72,6 +51,26 @@ const exampleData = {
         endDate: "02/2019",
         isCollapsed: true,
         isHidden: false,
+      },
+    ],
+    educations: [
+      {
+        degree: "Bachelors in Economics",
+        schoolName: "London City University",
+        location: "New York City, US",
+        startDate: "08/2020",
+        endDate: "present",
+        isCollapsed: true,
+        isHidden: false,
+      },
+      {
+        degree: "Master's Degree in Math",
+        schoolName: "Hidden University",
+        location: "New York City, US",
+        startDate: "08/2020",
+        endDate: "present",
+        isCollapsed: true,
+        isHidden: true,
       },
     ],
   },

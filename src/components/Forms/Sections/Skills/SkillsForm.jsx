@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Trash } from "lucide-react";
 
 export default function SkillsForm({
   skills,
@@ -12,6 +13,7 @@ export default function SkillsForm({
     subSkill: "",
     isVisible: true
   });
+  const [showValidation, setShowValidation] = useState(false);
 
   useEffect(() => {
     if (currentEditingSkill) {
@@ -28,6 +30,7 @@ export default function SkillsForm({
         isVisible: true
       });
     }
+    setShowValidation(false);
   }, [currentEditingSkill]);
 
   // Effect to update skills when formData changes
@@ -59,12 +62,24 @@ export default function SkillsForm({
     setFormData(prev => ({ ...prev, [key]: newValue }));
   };
 
+  const handleDelete = (e) => {
+    e.preventDefault();
+    if (currentEditingSkill) {
+      setSkills(prevSkills => prevSkills.filter(skill => skill.id !== currentEditingSkill.id));
+    } else {
+      // For new skill, remove the last item in the array
+      setSkills(prevSkills => prevSkills.slice(0, -1));
+    }
+    setDisplayContent("sections");
+  };
+
   const handleReturn = (e) => {
     e.preventDefault();
-    // Only return to sections if we have some content
-    if (formData.skill || formData.subSkill) {
-      setDisplayContent("sections");
+    if (!formData.skill) {
+      setShowValidation(true);
+      return;
     }
+    setDisplayContent("sections");
   };
 
   return (
@@ -82,7 +97,7 @@ export default function SkillsForm({
           </label>
           <input
             type="text"
-            className="mt-1 p-2 bg-gray-100 border-0 rounded-lg focus:outline-none"
+            className={`mt-1 p-2 bg-gray-100 border-0 rounded-lg focus:outline-none ${showValidation && !formData.skill ? 'border-2 border-red-400' : ''}`}
             id="skill"
             placeholder="Enter Skill"
             data-key="skill"
@@ -90,6 +105,9 @@ export default function SkillsForm({
             onChange={handleChange}
             required
           />
+          {showValidation && !formData.skill && (
+            <span className="text-red-400 text-sm mt-1">Skill is required</span>
+          )}
         </div>
         <div className="flex flex-col">
           <label
@@ -108,11 +126,18 @@ export default function SkillsForm({
             onChange={handleChange}
           />
         </div>
-        <button
-          onClick={handleReturn}
-          className="w-full relative mt-auto bg-gradient-to-r from-pink-500 to-orange-300 text-white cursor-pointer rounded-full py-3 shadow font-bold text-2xl hover:opacity-80">
-          Done
-        </button>
+        <div className="flex flex-row justify-between items-center gap-4 mt-6">
+          <button
+            onClick={handleDelete}
+            className="flex items-center gap-2 py-2 px-4 text-gray-600 hover:text-gray-900 text-base font-medium">
+            <Trash size={20} /> Delete
+          </button>
+          <button
+            onClick={handleReturn}
+            className="bg-[#E91E63] text-white px-8 py-2 rounded-full text-base font-medium hover:bg-[#D81B60]">
+            Save
+          </button>
+        </div>
       </form>
     </div>
   );
