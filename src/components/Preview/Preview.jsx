@@ -1,13 +1,15 @@
-import { MailIcon, Phone, LocationEdit, Calendar, FlagIcon, Link, GitGraph } from "lucide-react";
+import { MailIcon, Phone, LocationEdit, Calendar, FlagIcon, Link, GitGraph, Download } from "lucide-react";
 import PreviewSkills from "./PreviewSkills";
 import PreviewExperiences from "./PreviewExperiences";
 import PreviewEducations from "./PreviewEducations";
 import PreviewModal from "./PreviewModal";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { usePDF } from 'react-to-pdf';
+import { DownloadPdfButton } from "../downloadPdf";
 
 export default function Preview({ personalInfo, optionalInfo, skills, experiences, educations }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const mainPreviewRef = useRef(null);
 
   const PreviewContent = () => (
     <div className="h-full" >
@@ -42,15 +44,24 @@ export default function Preview({ personalInfo, optionalInfo, skills, experience
   return (
     <>
       <div
+        ref={mainPreviewRef}
         onClick={() => setIsModalOpen(true)}
         className="bg-white w-full h-full p-8 text-[#303F9F] overflow-y-auto shadow-lg rounded-xl cursor-pointer hover:shadow-xl transition-shadow">
         <PreviewContent />
       </div>
+      <div className="flex flex-col items-center mt-4">
+        <DownloadPdfButton previewRef={mainPreviewRef} />
+      </div>
       <PreviewModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}>
-        <div className="p-8 h-full overflow-y-auto">
-          <PreviewContent />
+        <div className="p-8 h-full overflow-y-auto relative">
+          <div>
+            <PreviewContent />
+          </div>
+          <div className="fixed right-8 bottom-8 z-50">
+            <DownloadPdfButton previewRef={mainPreviewRef} iconOnly />
+          </div>
         </div>
       </PreviewModal>
     </>
