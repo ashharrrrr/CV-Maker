@@ -14,7 +14,7 @@ export default function Skills({
   setSkills,
   handleDisplayContentSections,
   handleDisplayContentSkillsForm,
-  addNewSkill,
+  handleSkillEdit,
 }) {
   const [expandSkills, setExpandSkills] = useState(false);
 
@@ -49,12 +49,12 @@ export default function Skills({
                 setSkills={setSkills}
                 displayContent={displayContent}
                 setDisplayContent={setDisplayContent}
+                handleSkillEdit={handleSkillEdit}
               />
             </div>
           ))}
           <AddSkills
             skills={skills}
-            addNewSkill={addNewSkill}
             handleDisplayContentSkillsForm={handleDisplayContentSkillsForm}
           />
         </div>

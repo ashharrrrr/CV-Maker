@@ -17,6 +17,7 @@ export default function Sections({
   setSkills,
   experiences,
   personalInfo,
+  handleSkillEdit,
 }) {
   return (
     <div className="w-full flex flex-col gap-2">
@@ -37,6 +38,7 @@ export default function Sections({
         setSkills={setSkills}
         handleDisplayContentSkillsForm={handleDisplayContentSkillsForm}
         handleDisplayContentSections={handleDisplayContentSections}
+        handleSkillEdit={handleSkillEdit}
       />
       <Experiences
         experiences={experiences}

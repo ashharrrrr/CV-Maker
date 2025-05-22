@@ -16,6 +16,7 @@ function App() {
   );
   const [currentSkill, setCurrentSkill] = useState("");
   const [currentSubSkill, setCurrentSubSkill] = useState("");
+  const [currentEditingSkill, setCurrentEditingSkill] = useState(null);
 
   function handlePersonalInfoChange(e) {
     const { key } = e.target.dataset;
@@ -60,8 +61,13 @@ function App() {
     });
   }
 
+  function handleSkillEdit(skill) {
+    setCurrentEditingSkill(skill);
+  }
+
   function handleDisplayContentSections(e) {
     e.preventDefault();
+    setCurrentEditingSkill(null); // Reset editing state
     if (
       skills[skills.length - 1].skill &&
       experiences[experiences.length - 1].companyName
@@ -124,6 +130,7 @@ function App() {
             handleDisplayContentExperiencesForm={
               handleDisplayContentExperiencesForm
             }
+            handleSkillEdit={handleSkillEdit}
             personalInfo={personalInfo}
           />
         )}
@@ -137,6 +144,7 @@ function App() {
             setCurrentSubSkill={setCurrentSubSkill}
             handleSkillChange={handleSkillChange}
             handleDisplayContentSections={handleDisplayContentSections}
+            currentEditingSkill={currentEditingSkill}
           />
         )}
         {displayContent === "experiencesForm" && (
