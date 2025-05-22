@@ -1,4 +1,4 @@
-import PersonalDetails from "./components/forms/PersonalDetails";
+import PersonalDetails from "./components/Forms/PersonalDetails";
 import Preview from "./components/Preview/Preview";
 import exampleData from "./exampleData";
 import Sections from "./components/Forms/Sections/Sections";
