@@ -1,10 +1,10 @@
-import PersonalDetails from "./components/forms/PersonalDetails.jsx";
-import Preview from "./components/Preview/preview.jsx";
-import exampleData from "./exampleData.jsx";
-import Sections from "./components/Forms/Sections/Sections.jsx";
-import SkillsForm from "./components/Forms/Sections/Skills/SkillsForm.jsx";
-import ExperiencesForm from "./components/Forms/Sections/experiences/ExperiencesForm.jsx";
-import EducationsForm from "./components/Forms/Sections/educations/EducationsForm.jsx";
+import PersonalDetails from "./components/forms/PersonalDetails";
+import Preview from "./components/Preview/Preview";
+import exampleData from "./exampleData";
+import Sections from "./components/Forms/Sections/Sections";
+import SkillsForm from "./components/Forms/Sections/Skills/SkillsForm";
+import ExperiencesForm from "./components/Forms/Sections/experiences/ExperiencesForm";
+import EducationsForm from "./components/Forms/Sections/educations/EducationsForm";
 import { useState } from "react";
 
 function App() {
